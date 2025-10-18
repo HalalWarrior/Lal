@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CHRONOS X</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    *{box-sizing:border-box;}
+    body{margin:0;background:linear-gradient(to bottom,#0f1724,#071025);font-family:Poppins,sans-serif;color:#e6eef8;}
+    button{cursor:pointer;}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + ReactDOM via CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script>
+    const { useState } = React;
+
+    function App() {
+      const talhaImg = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><rect rx='20' width='400' height='400' fill='%236c5ce7'/><text x='50%' y='55%' font-size='120' fill='white' text-anchor='middle' font-family='Poppins'>T</text></svg>`;
+      const ashharImg = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><rect rx='12' width='300' height='300' fill='%23ffb86b'/><text x='50%' y='55%' font-size='80' fill='white' text-anchor='middle' font-family='Poppins'>A</text></svg>`;
+      const sulemanImg = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><rect rx='12' width='300' height='300' fill='%2393e1a6'/><text x='50%' y='55%' font-size='80' fill='white' text-anchor='middle' font-family='Poppins'>S</text></svg>`;
+
+      const [showProjects, setShowProjects] = useState(false);
+      const [showUpdates, setShowUpdates] = useState(false);
+
+      const projects = [
+        { id: 1, title: "Gesture-based Controls", desc: "Control music and calls using wrist gestures." },
+        { id: 2, title: "Sleep Stage Detection", desc: "Use sensors to infer sleep stages and give sleep quality reports." },
+        { id: 3, title: "Offline Navigation", desc: "Lightweight route guidance synced from phone, for running/biking." },
+      ];
+
+      const updates = [
+        { id: 1, title: "Homemade Smart Glasses", desc: "Next project: wearable AR/VR glasses made in-house." },
+      ];
+
+      return React.createElement('div', { style: { minHeight:'100vh', background:'linear-gradient(to bottom,#0f1724,#071025)', color:'#e6eef8', fontFamily:'Poppins,system-ui,sans-serif' } },
+        React.createElement('header', { style:{ padding:'1rem 5%', display:'flex', justifyContent:'center', alignItems:'center', backdropFilter:'blur(6px)' } },
+          React.createElement('div', { style:{ display:'flex', alignItems:'center', gap:12 } },
+            React.createElement('img', { src:talhaImg, alt:'logo', style:{ width:56, height:56, borderRadius:12 } }),
+            React.createElement('h1', { style:{ fontSize:24, background:'linear-gradient(45deg,#6c5ce7,#48dbfb)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', margin:0 } }, 'CHRONOS X')
+          )
+        ),
+        React.createElement('main', { style:{ padding:'100px 5% 36px' } },
+          React.createElement('section', { style:{ textAlign:'center', marginBottom:36 } },
+            React.createElement('h2', { style:{ fontSize:32 } }, 
+              'The ',
+              React.createElement('span', { style:{ background:'linear-gradient(45deg,#6c5ce7,#48dbfb)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' } }, 'Future'),
+              ' of Tech on Your ',
+              React.createElement('span', { style:{ background:'linear-gradient(45deg,#6c5ce7,#48dbfb)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent' } }, 'Wrist')
+            ),
+            React.createElement('div', { style:{ marginTop:20 } },
+              React.createElement('button', { style:{ padding:'10px 14px', borderRadius:12, background:'linear-gradient(45deg,#6c5ce7,#48dbfb)', color:'white', border:'none', fontWeight:700, marginRight:10 }, onClick:()=>setShowProjects(true) }, 'Future Projects'),
+              React.createElement('button', { style:{ padding:'10px 14px', borderRadius:12, background:'linear-gradient(45deg,#6c5ce7,#48dbfb)', color:'white', border:'none', fontWeight:700 }, onClick:()=>setShowUpdates(true) }, 'Future Updates')
+            )
+          )
+        ),
+        showProjects && React.createElement('div', { style:{ position:'fixed', inset:0, background:'rgba(2,6,23,0.6)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:100 } },
+          React.createElement('div', { style:{ background:'#071025', padding:20, borderRadius:10, minWidth:300, color:'#e6eef8' } },
+            React.createElement('h3', null, 'Future Projects'),
+            React.createElement('ul', { style:{ listStyle:'none', padding:0 } }, 
+              projects.map(p=>React.createElement('li', { key:p.id, style:{ padding:10, borderBottom:'1px solid rgba(255,255,255,0.1)' } },
+                React.createElement('strong', null, p.title),
+                React.createElement('div', { style:{ fontSize:13, color:'#94a3b8' } }, p.desc)
+              ))
+            ),
+            React.createElement('button', { style:{ marginTop:12 }, onClick:()=>setShowProjects(false) }, 'Close')
+          )
+        ),
+        showUpdates && React.createElement('div', { style:{ position:'fixed', inset:0, background:'rgba(2,6,23,0.6)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:100 } },
+          React.createElement('div', { style:{ background:'#071025', padding:20, borderRadius:10, minWidth:300, color:'#e6eef8' } },
+            React.createElement('h3', null, 'Future Updates'),
+            React.createElement('ul', { style:{ listStyle:'none', padding:0 } },
+              updates.map(u=>React.createElement('li', { key:u.id, style:{ padding:10, borderBottom:'1px solid rgba(255,255,255,0.1)' } },
+                React.createElement('strong', null, u.title),
+                React.createElement('div', { style:{ fontSize:13, color:'#94a3b8' } }, u.desc)
+              ))
+            ),
+            React.createElement('button', { style:{ marginTop:12 }, onClick:()=>setShowUpdates(false) }, 'Close')
+          )
+        )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(App));
+  </script>
+</body>
+</html>
